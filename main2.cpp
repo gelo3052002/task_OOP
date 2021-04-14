@@ -9,7 +9,6 @@ private:
 	char nhatochuc[50];
 	char thoigian[50];
 	char hinhthuc[50];
-	doithi danhsach;
 public:
 	cuocthi();
 	~cuocthi();
@@ -85,4 +84,18 @@ void doithi::nhap()
 	cin >> soluong;
 }
 void doithi::check() {}
-
+int main()
+{
+	CTF a;
+	cuocthi b;
+	a.nhap();
+	b.nhap();
+	int n;
+	cout << "nhap so doi thi: ";
+	cin >> n;
+	doithi* team = new doithi[n];
+	for (int i = 0; i < n; i++)
+	{
+		team[i].nhap();
+	}
+}
