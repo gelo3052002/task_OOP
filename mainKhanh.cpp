@@ -1,75 +1,80 @@
 #include <iostream>
-#include <string.h>
-using namespace std;
+#include <string>
 #define MAX 100
+using namespace std;
 struct Team {
     string name;
     string soluongthanhvien;
 };
-class contest
+class contest 
 {
-private:
-    string Tencuocthi;
-    string Nhatochuc;
-    string Thoigian;
-    string Hinhthucthi;
-    //Jeopardy
-    //Attack & Defence;
-    //Kết hợp
-    Team Danhsachteam;
-public:
-    contest();
-    ~contest();
-    void input() {
-        cout << "Ten cuoc thi: ";
-        cin >> Tencuocthi;
-        cout << "Nha to chuc: ";
-        cin >> Nhatochuc;
-        cout << "Thoi gian: ";
-        cin >> Thoigian;
-        cout << "Hinh thuc thi(Jeopardy, Attack & Defence , Ket hop):" << endl;
-        cin >> Hinhthucthi;
-    }
-    void Dangki() {
-        cout << "Nhap ten team: ";
-        cin >> Danhsachteam.name;
-        cout << "So luong thanh vien: ";
-        cin >> Danhsachteam.soluongthanhvien;
-    };
-    void CheckTeamExsit(string a) {
-        if ((Danhsachteam.name).compare(a) == 0)
-        {
-            cout << "ton tai: ";
+    private:
+        string Tencuocthi;
+        string Nhatochuc;
+        string Thoigian;
+        string Hinhthucthi;
+        //Jeopardy
+        //Attack & Defence;
+        //Kết hợp
+        Team Danhsachteam[MAX];
+    public:
+        contest(){};
+        ~contest(){};
+        void input() {
+            cout << "Ten cuoc thi: ";
+            cin >> Tencuocthi;
+            cout << "Nha to chuc: ";
+            cin >> Nhatochuc;
+            cout <<"Thoi gian: ";
+            cin >> Thoigian;
+            cout << "Hinh thuc thi(Jeopardy, Attack & Defence , Ket hop):" << endl;
+            cin >> Hinhthucthi;
         }
-        else
-        {
-            cout << "khong ton tai: ";
-        }
+         void output() {
+            cout << "Ten cuoc thi: " << Tencuocthi << endl;
+            cout << "Nha to chuc: " << Nhatochuc << endl;
+            cout <<"Thoi gian: " << Thoigian << endl;
+            cout << "Hinh thuc thi: " << Hinhthucthi << endl;
     }
-    void List3TeamBestScore()
-    {
-
-    }
+//         void Dangki() {
+//             cout << "Nhap ten team: ";
+//             cin >> name;
+//             cout << "So luong thanh vien: ";
+//             cin >> soluongthanhvien;
+//         };
+//         void CheckTeamExsit() {
+//         };
+//         void List3TeamBestScore();
+// }
 };
-class CTF
-{
-private:
-    contest Cuocthi[MAX];
-    int quantity;
-public:
-    CTF();
-    ~CTF();
+class CTF 
+{   
+    private:
+        int quantity;
+        contest* Cuocthi = new contest[quantity];
+       
+    public:
+        CTF(){};
+        ~CTF(){
+            delete [] Cuocthi;
+        };
     void input() {
         cout << "So cuoc thi CTF muon to chuc: ";
         cin >> quantity;
-        int n = quantity;
-        for (int i = 0; i < n; i++) {
+        for(int i = 0;i < quantity;i++) {
+            cout << "-----CUOC THI " << i+1 << "-----" << endl;
             Cuocthi[i].input();
         }
     }
-
+    void output() {
+        for(int i = 0;i < quantity;i++) {
+            cout << "-----CUOC THI " << i+1 << "-----" << endl;
+            Cuocthi[i].output();
+        }
+    }
 };
-CTF::CTF() {}
-CTF::~CTF() {}
-contest::contest() {}
-contest::~contest() {}
+int main() {
+    CTF uit;
+    uit.input();
+    uit.output();
+}
